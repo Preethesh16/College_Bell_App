@@ -26,4 +26,24 @@ class DepartmentService {
   Future<void> setMode(String dept, String mode) async {
     await _db.child("departments/$dept/mode").set(mode);
   }
+
+  Stream<List<int>> scheduleStream(String dept, String mode) {
+    return _db
+        .child("departments/$dept/schedules/$mode/times")
+        .onValue
+        .map((event) {
+      if (!event.snapshot.exists) return [];
+
+      List<dynamic> raw = event.snapshot.value as List<dynamic>;
+
+      return raw.map((e) => e as int).toList();
+    });
+  }
+
+  Stream<String> modeStream(String dept) {
+    return _db
+        .child("departments/$dept/mode")
+        .onValue
+        .map((event) => event.snapshot.value?.toString() ?? "");
+  }
 }

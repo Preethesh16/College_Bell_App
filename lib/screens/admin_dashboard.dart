@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../services/department_service.dart';
+import './department_control_screen.dart';
 
 class AdminDashboard extends StatefulWidget {
   const AdminDashboard({super.key});
@@ -57,20 +58,3 @@ class _AdminDashboardState extends State<AdminDashboard> {
   }
 }
 
-class DepartmentControlScreen extends StatelessWidget {
-  final String dept;
-
-  const DepartmentControlScreen({required this.dept});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Department Control'),
-      ),
-      body: Center(
-        child: Text('Department Control Screen'),
-      ),
-    );
-  }
-}

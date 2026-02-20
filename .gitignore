@@ -1,47 +1,144 @@
-# Miscellaneous
-*.class
-*.log
-*.pyc
+# ==============================
+# 🔐 Security / Secrets
+# ==============================
+
+# Firebase
+android/app/google-services.json
+ios/Runner/GoogleService-Info.plist
+lib/firebase_options.dart
+
+# Environment files
+.env
+.env.*
+key.properties
+*.jks
+*.keystore
+
+# Firebase debug logs
+firebase-debug.log
+firebase-debug.*.log
+crashlytics-build.properties
+
+
+# ==============================
+# 🧠 IDE & Editor
+# ==============================
+
+# IntelliJ / Android Studio
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# VS Code (uncomment if you don’t want it tracked)
+# .vscode/
+
+# Misc editors
 *.swp
+*.swo
+*.tmp
+*.bak
+
+
+# ==============================
+# 🗑 System Files
+# ==============================
+
 .DS_Store
+Thumbs.db
 .atom/
 .buildlog/
 .history
 .svn/
 migrate_working_dir/
 
-# IntelliJ related
-*.iml
-*.ipr
-*.iws
-.idea/
 
-# The .vscode folder contains launch configuration and tasks you configure in
-# VS Code which you may wish to be included in version control, so this line
-# is commented out by default.
-#.vscode/
+# ==============================
+# 🐦 Flutter / Dart
+# ==============================
 
-# Flutter/Dart/Pub related
-**/doc/api/
-**/ios/Flutter/.last_build_id
 .dart_tool/
+.packages
+.pub/
+.pub-cache/
 .flutter-plugins
 .flutter-plugins-dependencies
-.pub-cache/
-.pub/
-/build/
+coverage/
+build/
 
-# Symbolication related
-app.*.symbols
+# Generated docs
+**/doc/api/
+**/ios/Flutter/.last_build_id
 
-# Obfuscation related
-app.*.map.json
+# Generated localization
+lib/generated/
 
-# Android Studio will place build artifacts here
+
+# ==============================
+# 🤖 Android
+# ==============================
+
+.gradle/
+local.properties
+captures/
+.externalNativeBuild/
+.cxx/
+android/app/.cxx/
+
+# Build outputs
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+
+# ==============================
+# 🍎 iOS
+# ==============================
+
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+ios/ServiceDefinitions.json
+ios/Runner/GeneratedPluginRegistrant.*
+
+
+# ==============================
+# 🍎 macOS
+# ==============================
+
+macos/Pods/
+macos/Flutter/GeneratedPluginRegistrant.swift
+
+
+# ==============================
+# 🪟 Windows
+# ==============================
+
+windows/flutter/ephemeral/
+
+
+# ==============================
+# 🐧 Linux
+# ==============================
+
+linux/flutter/ephemeral/
+
+
+# ==============================
+# 🌐 Web
+# ==============================
+
+web/build/
+
+
+# ==============================
+# 🧾 Misc
+# ==============================
+
+*.class
+*.log
+*.pyc
 *.deb
-build/
-.dart_tool/
-.gradle/
+app.*.symbols
+app.*.map.json

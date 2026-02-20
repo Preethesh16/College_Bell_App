@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../services/department_service.dart';
-import 'department_control.dart';
+import 'department_control_screen.dart';
 
 class SecretaryDashboard extends StatefulWidget {
   final Map<String, dynamic> userData;
