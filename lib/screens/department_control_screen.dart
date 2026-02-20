@@ -83,11 +83,39 @@ class _DepartmentControlScreenState extends State<DepartmentControlScreen> {
                           return ListTile(
                             leading: const Icon(Icons.access_time),
                             title: Text(formatTime(times[index])),
+                            trailing: IconButton(
+                              icon: const Icon(Icons.delete, color: Colors.red),
+                              onPressed: () {
+                                _service.deleteTime(
+                                    widget.dept, currentMode, times[index]);
+                              },
+                            ),
                           );
                         },
                       );
                     },
                   ),
+                ),
+                Row(
+                  children: [
+                    ElevatedButton.icon(
+                      onPressed: () async {
+                        TimeOfDay? picked = await showTimePicker(
+                          context: context,
+                          initialTime: TimeOfDay.now(),
+                        );
+
+                        if (picked != null) {
+                          int minuteValue = picked.hour * 60 + picked.minute;
+
+                          await _service.addTime(
+                              widget.dept, currentMode, minuteValue);
+                        }
+                      },
+                      icon: const Icon(Icons.add),
+                      label: const Text("Add Time"),
+                    ),
+                  ],
                 ),
                 const SizedBox(height: 10),
                 const Text("Change Mode"),

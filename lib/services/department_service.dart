@@ -46,4 +46,48 @@ class DepartmentService {
         .onValue
         .map((event) => event.snapshot.value?.toString() ?? "");
   }
+
+  // ===============================
+// ADD TIME
+// ===============================
+  Future<void> addTime(String dept, String mode, int minuteValue) async {
+    DatabaseReference ref =
+        _db.child("departments/$dept/schedules/$mode/times");
+
+    DatabaseEvent event = await ref.once();
+
+    List<int> times = [];
+
+    if (event.snapshot.exists) {
+      List<dynamic> raw = event.snapshot.value as List<dynamic>;
+      times = raw.map((e) => e as int).toList();
+    }
+
+    // Prevent duplicate
+    if (times.contains(minuteValue)) return;
+
+    times.add(minuteValue);
+    times.sort();
+
+    await ref.set(times);
+  }
+
+// ===============================
+// DELETE TIME
+// ===============================
+  Future<void> deleteTime(String dept, String mode, int minuteValue) async {
+    DatabaseReference ref =
+        _db.child("departments/$dept/schedules/$mode/times");
+
+    DatabaseEvent event = await ref.once();
+
+    if (!event.snapshot.exists) return;
+
+    List<dynamic> raw = event.snapshot.value as List<dynamic>;
+    List<int> times = raw.map((e) => e as int).toList();
+
+    times.remove(minuteValue);
+
+    await ref.set(times);
+  }
 }
