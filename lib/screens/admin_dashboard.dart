@@ -4,6 +4,8 @@ import './department_control_screen.dart';
 import '../widgets/tech_card.dart';
 import '../widgets/tech_sidebar.dart';
 import '../widgets/status_dot.dart';
+import 'login_screen.dart';
+import '../services/auth_service.dart';
 
 class AdminDashboard extends StatefulWidget {
   const AdminDashboard({super.key});
@@ -21,6 +23,17 @@ class _AdminDashboardState extends State<AdminDashboard> {
   List<String> departments = [];
 
   String lastSyncTime = "--";
+  final AuthService _authService = AuthService();
+
+  void logout() async {
+    await _authService.logout(); // make sure this signs out firebase
+
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (_) => const LoginScreen()),
+      (route) => false, // removes entire stack
+    );
+  }
 
   @override
   void initState() {
@@ -60,7 +73,7 @@ class _AdminDashboardState extends State<AdminDashboard> {
               });
 
               if (index == 2) {
-                Navigator.pop(context);
+                logout();
               }
             },
           ),
@@ -77,6 +90,7 @@ class _AdminDashboardState extends State<AdminDashboard> {
                         // ===== Header Section =====
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             const Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -97,6 +111,18 @@ class _AdminDashboardState extends State<AdminDashboard> {
                             ),
                             Row(
                               children: [
+                                // ===== SMALL LOGO =====
+                                Opacity(
+                                  opacity: 0.85,
+                                  child: Image.asset(
+                                    "assets/logo.png",
+                                    height: 42,
+                                  ),
+                                ),
+
+                                const SizedBox(width: 20),
+
+                                // ===== STATUS =====
                                 StatusDot(
                                   color: systemOnline
                                       ? const Color(0xFF00FF9C)
@@ -149,32 +175,6 @@ class _AdminDashboardState extends State<AdminDashboard> {
                                 ),
                               ),
                             ),
-                            // const SizedBox(width: 25),
-                            // Expanded(
-                            //   child: TechCard(
-                            //     child: Column(
-                            //       crossAxisAlignment: CrossAxisAlignment.start,
-                            //       children: [
-                            //         const Text(
-                            //           "System Status",
-                            //           style:
-                            //               TextStyle(color: Color(0xFF94A3B8)),
-                            //         ),
-                            //         const SizedBox(height: 12),
-                            //         Text(
-                            //           systemOnline ? "ONLINE" : "OFFLINE",
-                            //           style: TextStyle(
-                            //             fontSize: 28,
-                            //             fontWeight: FontWeight.bold,
-                            //             color: systemOnline
-                            //                 ? const Color(0xFF00FF9C)
-                            //                 : const Color(0xFFFF4D4D),
-                            //           ),
-                            //         ),
-                            //       ],
-                            //     ),
-                            //   ),
-                            // ),
                             const SizedBox(width: 25),
                             Expanded(
                               child: TechCard(

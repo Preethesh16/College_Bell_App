@@ -110,6 +110,7 @@ class _DepartmentControlScreenState extends State<DepartmentControlScreen>
                   // HEADER
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Row(
                         children: [
@@ -122,10 +123,11 @@ class _DepartmentControlScreenState extends State<DepartmentControlScreen>
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(widget.dept.toUpperCase(),
-                                  style: const TextStyle(
-                                      fontSize: 28,
-                                      fontWeight: FontWeight.bold)),
+                              Text(
+                                widget.dept.toUpperCase(),
+                                style: const TextStyle(
+                                    fontSize: 28, fontWeight: FontWeight.bold),
+                              ),
                               const SizedBox(height: 6),
                               const Text(
                                 "Department Bell Control Panel",
@@ -137,10 +139,23 @@ class _DepartmentControlScreenState extends State<DepartmentControlScreen>
                       ),
                       Row(
                         children: [
+                          // ===== SMALL LOGO =====
+                          Opacity(
+                            opacity: 0.85,
+                            child: Image.asset(
+                              "assets/logo.png",
+                              height: 40,
+                            ),
+                          ),
+
+                          const SizedBox(width: 20),
+
+                          // ===== STATUS =====
                           StatusDot(
-                              color: systemOnline
-                                  ? const Color(0xFF00FF9C)
-                                  : const Color(0xFFFF4D4D)),
+                            color: systemOnline
+                                ? const Color(0xFF00FF9C)
+                                : const Color(0xFFFF4D4D),
+                          ),
                           const SizedBox(width: 8),
                           Text(
                             systemOnline ? "Connected" : "Disconnected",

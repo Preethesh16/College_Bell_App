@@ -53,19 +53,47 @@ class _SecretaryDashboardState extends State<SecretaryDashboard> {
               : Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      "Secretary Dashboard",
-                      style: TextStyle(
-                        fontSize: 28,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    // ================= HEADER =================
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: const [
+                            Text(
+                              "Secretary Dashboard",
+                              style: TextStyle(
+                                fontSize: 28,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(height: 8),
+                            Text(
+                              "Manage your assigned department bells",
+                              style: TextStyle(
+                                color: Color(0xFF94A3B8),
+                              ),
+                            ),
+                          ],
+                        ),
+
+                        // ===== SMALL LOGO =====
+                        Opacity(
+                          opacity: 0.9,
+                          child: Image.asset(
+                            "assets/logo.png",
+                            height: 45,
+                          ),
+                        ),
+                      ],
                     ),
-                    const SizedBox(height: 8),
-                    const Text(
-                      "Manage your assigned department bells",
-                      style: TextStyle(color: Color(0xFF94A3B8)),
-                    ),
-                    const SizedBox(height: 40),
+
+                    const SizedBox(height: 30),
+                    const Divider(color: Color(0xFF1F2937)),
+                    const SizedBox(height: 30),
+
+                    // ================= GRID =================
                     Expanded(
                       child: GridView.builder(
                         gridDelegate:
